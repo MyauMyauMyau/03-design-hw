@@ -6,7 +6,7 @@ namespace TagCloud
 {
 	class ConsoleOptions: IOptions
 	{
-		[Option('i', "input", DefaultValue = "../../big_input.txt", HelpText = "file to read")]
+		[Option('i', "input", DefaultValue = "../../input.txt", HelpText = "file to read")]
 		public string InputFilePath { get; set; }
 
 		[Option('o', "output", DefaultValue = "../../output", HelpText = "File to write.")]

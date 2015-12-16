@@ -23,6 +23,7 @@ namespace TagCloud
 				.WithConstructorArgument("format", options.GetOutputFormat());
 	        kernel.Bind<IWordsReader>().To<SimpleWordsReader>()
 				.WithConstructorArgument("path",options.GetInputFile());
+	        kernel.Bind<IWordsFilter>().To<PrepositionsFilter>();
 	        kernel.Bind<ITagCloudBuilder>().To<TagCloudBuilder>();	
 			kernel.Get<ITagCloudBuilder>().Build();
 

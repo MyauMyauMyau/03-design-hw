@@ -12,15 +12,17 @@ namespace TagCloud
 		private readonly IWordsReader reader;
 		private readonly IAlgorithm algorithm;
 		private readonly IImageWriter writer;
-		public TagCloudBuilder(IWordsReader reader, IAlgorithm algorithm, IImageWriter writer)
+		private readonly IWordsFilter filter;
+		public TagCloudBuilder(IWordsReader reader, IAlgorithm algorithm, IImageWriter writer, IWordsFilter filter)
 		{
+			this.filter = filter;
 			this.reader = reader;
 			this.algorithm = algorithm;
 			this.writer = writer;
 		}
 		public void Build()
 		{
-			var words = reader.ReadWords();
+			var words = filter.Filter(reader.ReadWords()).ToArray();
 			var cloud = algorithm.BuildTagCloud(words);
 			writer.WriteImage(cloud);
 		}
